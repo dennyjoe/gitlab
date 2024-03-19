@@ -7,7 +7,7 @@ networks:
 
 services:
   web:
-    image: 'zengxs/gitlab:latest'
+    image: 'gitlab/gitlab-ce:latest'
     container_name: "gitlab"
     hostname: 'gitlab.kisses.life'
     environment:
