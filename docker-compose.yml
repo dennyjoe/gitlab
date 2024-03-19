@@ -1,0 +1,36 @@
+version: '3.6'
+
+networks:
+  gateway:
+    external: true
+    name: "gateway"
+
+services:
+  web:
+    image: 'zengxs/gitlab:latest'
+    container_name: "gitlab"
+    hostname: 'gitlab.kisses.life'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.kisses.life'
+        nginx['listen_https'] = false
+        nginx['listen_port'] = 80
+        gitlab_rails['smtp_enable'] = true
+        gitlab_rails['smtp_address'] = "smtp.fastmail.com"
+        gitlab_rails['smtp_port'] = 465
+        gitlab_rails['smtp_user_name'] = "dennis@kisses.life"
+        gitlab_rails['smtp_password'] = "${SMTP_PASSWORD}"
+        gitlab_rails['smtp_domain'] = "kisses.life"
+        gitlab_rails['smtp_authentication'] = "login"
+        gitlab_rails['smtp_enable_starttls_auto'] = false
+        gitlab_rails['smtp_tls'] = true
+        gitlab_rails['smtp_pool'] = false
+        gitlab_rails['smtp_openssl_verify_mode'] = 'none'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - "gateway"
+    restart: "unless-stopped"
