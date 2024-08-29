@@ -34,18 +34,3 @@ services:
     networks:
       - "gateway"
     restart: "unless-stopped"
-
-  gitlab-runner:
-    container_name: gitlab-runner
-    image: 'gitlab/gitlab-runner:latest'
-    privileged: true
-    volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock'
-      - '/srv/gitlab-runner/config:/etc/gitlab-runner'
-      - '/cache'
-    sysctls:
-      - net.ipv4.ip_forward=1
-      - net.ipv4.conf.all.accept_source_route=1
-    networks:
-      - "gateway"
-    restart: "unless-stopped"
