@@ -34,3 +34,13 @@ services:
     networks:
       - "gateway"
     restart: "unless-stopped"
+
+  gitlab-runner:
+    container_name: gitlab-runner
+    image: 'gitlab/gitlab-runner:latest'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '$GITLAB_HOME/config/gitlab-runner/config:/etc/gitlab-runner'
+    networks:
+      - "gateway"
+    restart: "unless-stopped"
