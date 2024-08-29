@@ -40,7 +40,7 @@ services:
     image: 'gitlab/gitlab-runner:latest'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '$GITLAB_HOME/gitlab-runner/config:/etc/gitlab-runner'
+      - '/srv/gitlab-runner/config:/etc/gitlab-runner'
     networks:
       - "gateway"
     restart: "unless-stopped"
