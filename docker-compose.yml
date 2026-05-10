@@ -26,6 +26,8 @@ services:
         gitlab_rails['smtp_tls'] = true
         gitlab_rails['smtp_pool'] = false
         gitlab_rails['smtp_openssl_verify_mode'] = 'none'
+        gitlab_rails['gitlab_ssh_host'] = '${SSH_HOST}'
+        gitlab_rails['gitlab_shell_ssh_port'] = ${SSH_PORT}
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
