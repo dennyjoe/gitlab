@@ -31,8 +31,6 @@ services:
         gitlab_sshd['enable'] = true
         gitlab_sshd['listen_address'] = '0.0.0.0'
         gitlab_sshd['listen_port'] = 2222
-#    ports:
-#      - "2222:2222"  # Host 2222 → Container 2222 (only needed for cloudflared host networking)
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
