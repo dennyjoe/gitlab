@@ -31,6 +31,7 @@ services:
         gitlab_sshd['enable'] = true
         gitlab_sshd['listen_address'] = '0.0.0.0'
         gitlab_sshd['listen_port'] = ${SSH_PORT}
+        gitlab_rails['gitlab_shell_enabled'] = false
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
